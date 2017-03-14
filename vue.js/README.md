@@ -1,8 +1,4 @@
-title: Vue学习总结
-date: 2017-03-09 10:36:23
-tags: 
-  - 前端
-  - 笔记
+# Vue学习总结
 
 ----------
 
@@ -259,4 +255,4 @@ export default new Vuex.Store({
 })
 ```
 
-  [4][https://vuex.vuejs.org/zh-cn/]
+  [4]: [https://vuex.vuejs.org/zh-cn/]
