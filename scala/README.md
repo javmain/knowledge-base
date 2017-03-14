@@ -17,27 +17,27 @@
     sudo apt-get install sbt
     ```
     ##### Windows
-    >[下载链接](http://www.scala-sbt.org/download.html)
+    [下载链接](http://www.scala-sbt.org/download.html)
     
     ##### 教程
    [link1]()
    
    [link2]()
    
-   ##### 基本配置
-   由于sbt下载依赖的速度实在是太慢了
+    ##### 基本配置
+    由于sbt下载依赖的速度实在是太慢了
    
-   使用repox.gtan.com源加速sbt下载：
+    使用repox.gtan.com源加速sbt下载：
    
-     ###### Ubuntu
-       ```
-       mkdir ~/.sbt/
-       echo '[repositories]
+    ###### Ubuntu
+        ```
+        mkdir ~/.sbt/
+        echo '[repositories]
              local
              repox-maven: http://192.168.32.106:8078/
              repox-ivy: http://192.168.32.106:8078/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
-       ' > ~/.sbt/repositories 
-       ```
+        ' > ~/.sbt/repositories 
+        ```
        
     ###### Windows
       > sbt安装目录 -> conf -> 
