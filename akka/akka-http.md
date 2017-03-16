@@ -1,5 +1,18 @@
 # Akka Http
 
+## 数据格式
+
+REST服务应复用 **Http status** ，文本数据格式推荐使用 **JSON** 。只有当Http响应码为：200、201或204时认为请求成功。当请求失败或
+错误时除了设置相应的Http响应码，返回内容也应为JSON格式，其中：`errCode`和`errMsg`必传：
+
+```json
+{
+  "errCode": 500,
+  "errMsg": "错误描述",
+  "data": JSON, // 附加数据，具体类型由API决定
+}
+```
+
 ## 推荐 Akka Http 微服务目录：
 
 - boot：启动程序文件和全局服务object
