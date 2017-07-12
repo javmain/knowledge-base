@@ -386,13 +386,11 @@ new Comparator<Student>() {
     正例： values() 返回的是 V 值集合，是一个 list 集合对象 ；keySet() 返回的是 K 值集合，是一个 Set 集合对象 ；entrySet() 返回的是 K - V 值组合集合。
 
 11. **[推荐]** 高度注意 Map 类集合 K / V 能不能存储 null 值的情况，如下表格：
-    
-    | 集合类             | Key          | Value       | Super      | 说明       |
-    | Hashtable         | 不允许为 null | 不允许为 null | Dictionary | 线程安全    |
-    | ConcurrentHashMap | 不允许为 null | 不允许为 null | AbstractMap | 分段锁技术 |
-    | TreeMap           | 不允许为 null | 允许为 null  | AbstractMap | 线程不安全  |
-    | HashMap           | 允许为 null   | 允许为 null  | AbstractMap | 线程不安全  |
-    
+| 集合类            | Key           | Value         | Super       | 说明       |
+| Hashtable         | 不允许为 null | 不允许为 null | Dictionary  | 线程安全   |
+| ConcurrentHashMap | 不允许为 null | 不允许为 null | AbstractMap | 分段锁技术 |
+| TreeMap           | 不允许为 null | 允许为 null   | AbstractMap | 线程不安全 |
+| HashMap           | 允许为 null   | 允许为 null   | AbstractMap | 线程不安全 |
     反例： 由于 HashMap 的干扰，很多人认为 ConcurrentHashMap 是可以置入 null 值，而事实上，存储 null 值时会抛出 NPE 异常。
 
 12. 【参考】合理利用好集合的有序性 (sort) 和稳定性 (order) ，避免集合的无序性 (unsort) 和不稳定性 (unorder) 带来的负面影响。
