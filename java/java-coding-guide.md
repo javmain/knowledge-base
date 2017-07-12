@@ -1,6 +1,6 @@
 # Java 编码规约
 
-本规约参考了大部分 [《阿里巴巴Java开发手册v1。2。0》](阿里巴巴Java开发手册v1。2。0。pdf) ，在此表达最崇高的敬意。
+本规约参考了大部分 [《阿里巴巴Java开发手册v1.2.0》](阿里巴巴Java开发手册v1.2.0.pdf) ，在此表达最崇高的敬意。
 
 ## 编程规约
 
@@ -31,13 +31,13 @@
 
 6 **[强制]** 抽象类命名使用 Abstract 或 Base 开头；异常类命名使用 Exception 结尾，测试类命名以它要测试的类的名称开始，以 Test 结尾。
 
-7 **[强制]** 中括号是数组类型的一部分，数组定义如下： String[] args；
+7 **[强制]** 中括号是数组类型的一部分，数组定义如下： `String[] args`；
 
 > 反例：使用 `String args[]` 的方式来定义。
 
-8 **[强制]** POJO 类中布尔类型的变量，都不要加 is ，否则部分框架解析会引起序列化错误。
+8 **[强制]** POJO 类中布尔类型的变量，都不要加 **is** ，否则部分框架解析会引起序列化错误。
 
-> 反例：定义为基本数据类型 Boolean isSuccess； 的属性，它的方法也是 isSuccess() ，RPC框架在反向解析的时候，以为”对应的属性名称是 success，导致属性获取不到，进而抛出异常。
+> 反例：定义为基本数据类型 `Boolean isSuccess;` 的属性，它的方法也是 `isSuccess()`，RPC框架在反向解析的时候，以为对应的属性名称是 success，导致属性获取不到，进而抛出异常。
 
 9 **[强制]** 包名统一使用小写，点分隔符之间有且仅有一个自然语义的英语单词。包名统一使用单数形式，但是类名如果有复数含义，类名可以使用复数形式。
 
@@ -58,7 +58,7 @@ public class LoginProxy；
 public class ResourceObserver；
 ```
 
-12 **[推荐]** 接口类中的方法和属性不要加任何修饰符号 (public 也不要加 ) ，保持代码的简洁性，并加上有效的Javadoc 注释。尽量不要在接口里定义变量，如果一定要定义变量，肯定是与接口方法相关，并且是整个应用的基础常量。
+12 **[推荐]** 接口类中的方法和属性不要加任何修饰符号（public 也不要加），保持代码的简洁性，并加上有效的Javadoc 注释。尽量不要在接口里定义变量，如果一定要定义变量，肯定是与接口方法相关，并且是整个应用的基础常量。
 
 > **正例：** 接口方法签名： `void f()`；接口基础常量表示： `String COMPANY = "alibaba"`；
 > 反例：接口方法定义： `public abstract void f()`；
@@ -66,7 +66,7 @@ public class ResourceObserver；
 
 13 **[强制]** 接口和实现类的命名有两套规则：
 
-1. **强制** 对于 Service 和 DAO 类，基于 SOA 的理念，暴露出来的服务一定是接口，内部的实现类用 Impl 的后缀与接口区别。
+1. **强制** 对于 Service 和 Repository 类，基于 SOA 的理念，暴露出来的服务一定是接口，内部的实现类用 Impl 的后缀与接口区别。
     *正例*： CacheServiceImpl 实现 CacheService 接口。
 2. **推荐** 如果是形容能力的接口名称，取对应的形容词做接口名（通常是-able的形式）。
     *正例*： AbstractTranslator 实现 Translatable 接口。
@@ -75,19 +75,19 @@ public class ResourceObserver；
     说明：枚举其实就是特殊的常量类，且构造方法被默认强制是私有。
     正例：枚举名字： DealStatusEnum， 成员名称： `SUCCESS` / `UNKOWN_REASON` 。
 
-15 **[参考]** 各层命名规约：
+15 **[推荐]** 各层命名规约：
 
-1. Service / DAO 层方法命名规约
-    1. 获取单个对象的方法用 get 做前缀。
-    0. 获取多个对象的方法用 list 做前缀。
-    0. 获取统计值的方法用 count 做前缀。
-    0. 插入的方法用 `save` (推荐) 或 insert 做前缀。
-    0. 删除的方法用 `remove` (推荐) 或 delete 做前缀。
+1. Service / Repository 层方法命名规约
+    1. 获取单个对象的方法用 `get` 做前缀。
+    0. 获取多个对象的方法用 `list` 做前缀。
+    0. 获取统计值的方法用 `count` 做前缀。
+    0. 插入的方法用 `save` (推荐) 或 `insert` 做前缀。
+    0. 删除的方法用 `remove` (推荐) 或 `delete` 做前缀。
     0. 修改的方法用 `update` 做前缀。
 2. 领域模型命名规约
     1. 数据对象： xxxDO， xxx即为数据表名。
-    0. 数据传输对象： xxxDTO， xxx为业务领域相关的名称。
-    0. 展示对象： xxxVO， xxx一般为网页名称。
+    0. 数据传输对象： xxxDTO， xxx为业务领域相关的名称。（一般为前端提交给后端的数据对象）
+    0. 展示对象： xxxVO， xxx一般为网页或组件名称。（一般为后端响应给前端的数据对象，另外BO也常用于此业务场景）
     0. POJO 是 DO/DTO/BO/VO 的统称，禁止命名成xxxPOJO。
 
 ### 常量定义
@@ -302,7 +302,7 @@ System.out.println(ary.length)；
 
 15 **[推荐]**  类内方法定义顺序依次是：公有方法或保护方法 > 私有方法 > getter / setter方法。
 
-> 说明：公有方法是类的调用者和维护者最关心的方法，首屏展示最好 ； 保护方法虽然只是子类关心，也可能是“模板设计模式”下的核心方法 ； 而私有方法外部一般不需要特别关心，是一个黑盒实现 ； 因为方法信息价值较低，所有 Service 和 DAO 的 getter / setter 方法放在类体最后。
+> 说明：公有方法是类的调用者和维护者最关心的方法，首屏展示最好 ； 保护方法虽然只是子类关心，也可能是“模板设计模式”下的核心方法 ； 而私有方法外部一般不需要特别关心，是一个黑盒实现 ； 因为方法信息价值较低，所有 Service 和 Repository 的 getter / setter 方法放在类体最后。
 
 16 **[推荐]**  setter 方法中，参数名称与类成员变量名称一致， `this.成员名 = 参数名`。在 getter / setter 方法中，不要增加业务逻辑，增加排查问题的难度。
 
@@ -644,7 +644,7 @@ if ((file.open(fileName， "w") != null) && (...) || (...)) {
 8 **[参考]** 下列情形，不需要进行参数校验：
 
 1. 极有可能被循环调用的方法。但在方法说明里必须注明外部参数检查要求。
-2. 底层调用频度比较高的方法。毕竟是像纯净水过滤的最后一道，参数错误不太可能到底层才会暴露问题。一般 DAO 层与 Service 层都在同一个应用中，部署在同一台服务器中，所以 DAO 的参数校验，可以省略。
+2. 底层调用频度比较高的方法。毕竟是像纯净水过滤的最后一道，参数错误不太可能到底层才会暴露问题。一般 Repository 层与 Service 层都在同一个应用中，部署在同一台服务器中，所以 Repository 的参数校验，可以省略。
 3. 被声明成 private 只会被自己代码所调用的方法，如果能够确定调用方法的代码传入参数已经做过检查或者肯定不会有问题，此时可以不校验参数。
 
 ### 注释规约
@@ -774,7 +774,7 @@ try
 
 > 正例：使用 JDK8 的 Optional 类来防止 NPE 问题。
 
-11 **[推荐]** 定义时区分 unchecked / checked 异常，避免直接抛出 new RuntimeException()，更不允许抛出 Exception 或者 Throwable ，应使用有业务含义的自定义异常。推荐业界已定义过的自定义异常，如：DAOException / ServiceException 等。
+11 **[推荐]** 定义时区分 unchecked / checked 异常，避免直接抛出 new RuntimeException()，更不允许抛出 Exception 或者 Throwable ，应使用有业务含义的自定义异常。推荐业界已定义过的自定义异常，如：RepositoryException / ServiceException 等。
 
 12 **[参考]** 在代码中使用“抛异常”还是“返回错误码”，对于公司外的 **HTTP/API** 开放接口必须使用“错误码” ； 而应用内部推荐异常抛出；跨应用间 RPC 调用优先考虑使用 Result 方式，封装 isSuccess()方法 、“错误码”、“错误简短信息”。
 
@@ -872,7 +872,7 @@ logger.debug("Processing trade with id： {} symbol ： {} "， id， symbol);
 
 ### 应用分层
 
-1 **[推荐]**图中默认上层依赖于下层，箭头关系表示可直接依赖，如：开放接口层可以依赖于Web 层，也可以直接依赖于Service 层，依此类推：
+1 **[推荐]** 图中默认上层依赖于下层，箭头关系表示可直接依赖，如：开放接口层可以依赖于Web 层，也可以直接依赖于Service 层，依此类推：
 
 ![应用分层](img/app_level.png)
 
@@ -883,19 +883,37 @@ logger.debug("Processing trade with id： {} symbol ： {} "， id， symbol);
 0. Manager 层：通用业务处理层，它有如下特征：
     1. 对第三方平台封装的层，预处理返回结果及转化异常信息；
     0. 对 Service 层通用能力的下沉，如缓存方案、中间件通用处理；
-    0. 与 DAO 层交互，对多个 DAO 的组合复用。
-0. DAO 层：数据访问层，与底层 PostgreSQL、MySQL、Oracle、Cassandra 进行数据交互。
+    0. 与 Repository 层交互，对多个 Repository 的组合复用。
+0. Repository 层：数据访问层，与底层 PostgreSQL、MySQL、Oracle、Cassandra 进行数据交互。
 0. 外部接口或第三方平台：包括其它部门 RPC 开放接口，基础平台，其它公司的 HTTP 接口。
 
-2 **[参考]** （分层异常处理规约）在 DAO 层，产生的异常类型有很多，无法用细粒度的异常进行 catch ，使用 `catch(Exception e)` 方式，并 `throw new DAOException(e)`，不需要打印日志，因为日志在 **Manager/Service** 层一定需要捕获并打到日志文件中去，如果同台服务器再打日志，浪费性能和存储。在 Service 层出现异常时，必须记录出错日志到磁盘，尽可能带上参数信息，相当于保护案发现场。如果 Manager 层与 Service 同机部署，日志方式与 DAO层处理一致，如果是单独部署，则采用与 Service 一致的处理方式。 Web 层绝不应该继续往上抛异常，因为已经处于顶层，无继续处理异常的方式，如果意识到这个异常将导致页面无法正常渲染，那么就应该直接跳转到友好错误页面，加上友好的错误提示信息。开放接口层要将异常处理成错误码和错误信息方式返回。
+2 **[强制]** 在Web层，提供给前端或客户的API对于有数据库关系的表，不允许直接暴露**关系表**给前端，而应使用具体实体和需要的字段。
 
-3 **[参考]** 分层领域模型规约：
+> 说明：有 Topic, Keyword两张表，同时有他们之间多对多的关系表 TopicKeyword，不应该直接暴露 TopicKeyword 到接口，应提供对应的 **DTO** 对象来操作。
+> 比如我需要将某些 **keyword** 加入特定 Topic，这时应创建一个 DTO 对象：
 
-1. DO(Data Object) ：与数据库表结构一一对应，通过 DAO 层向上传输数据源对象。
-0. DTO(Data Transfer Object) ：数据传输对象， Service 和 Manager 向外传输的对象。
-0. BO(Business Object) ：业务对象。可以由 Service 层输出的封装业务逻辑的对象。
-0. Query ：数据查询对象，各层接收上层的查询请求。注：超过 2 个参数的查询封装，禁止使用 Map 类来传输。
-0. VO(View Object) ：显示层对象，通常是 Web 向模板渲染引擎层传输的对象。
+```java
+@Data
+public class TopicKeywordRequest {
+    private List<UUID> keywordIdList;
+    private UUID topicId;
+}
+```
+
+3 **[参考]** （分层异常处理规约）在 Repository 层，产生的异常类型有很多，无法用细粒度的异常进行 catch ，使用 `catch(Exception e)` 方式，并 `throw new RepositoryException(e)`，不需要打印日志，因为日志在 **Manager/Service** 层一定需要捕获并打到日志文件中去，如果同台服务器再打日志，浪费性能和存储。在 Service 层出现异常时，必须记录出错日志到磁盘，尽可能带上参数信息，相当于保护案发现场。如果 Manager 层与 Service 同机部署，日志方式与 Repository层处理一致，如果是单独部署，则采用与 Service 一致的处理方式。 Web 层绝不应该继续往上抛异常，因为已经处于顶层，无继续处理异常的方式，如果意识到这个异常将导致页面无法正常渲染，那么就应该直接跳转到友好错误页面，加上友好的错误提示信息。开放接口层要将异常处理成错误码和错误信息方式返回。
+
+4 **[推荐]** 分层领域模型规约：
+
+1. DO(Data Object)：与数据库表结构一一对应，通过 Repository 层向上传输数据源对象。
+0. DTO(Data Transfer Object)：数据传输对象，Service 和 Manager 向外传输或接受提交请求的对象。
+0. BO(Business Object)：业务对象。可以由 Service 层输出的封装业务逻辑的对象。
+0. Query：数据查询对象，各层接收上层的查询请求。注：超过2个参数的查询封装，禁止使用Map类来传输。
+0. VO(View Object)：显示层对象，通常是 Web 向模板渲染引擎层传输的对象。
+
+> 说明，在Web Controller层，**推荐** 如下使用各领域模型
+
+1. **推荐** 响应数据时，对所有 DO 对象都封装、转换成BO或VO后再返回
+0. **推荐** 提交数据时，应使用 DTO 对象，在Service 或 Repository 层将其转换成 DO 对象
 
 ### 二方库依赖
 
