@@ -3,7 +3,7 @@
 ## 主要规范、规约
 
 - [数据库设计规范](sql_nosql/数据库设计规范.md)
-- [Java编程规约](java/java-coding-guide.md)
+- [Java规约](java/README.md)
 - [安全规约](security/安全规约.md)
 
 ## 常用技术、框架、工具
