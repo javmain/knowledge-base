@@ -21,7 +21,9 @@
 
 > 说明：resultClass="Hashtable"，会置入字段名和属性值，但是值的类型不可控。
 
-7 **[强制]** 更新数据表记录时，必须同时更新记录对应的 `updated_at` 字段值为当前时间。
+7 **[强制]** 更新数据表记录时，必须同时更新记录对应的 `updatedAt` 字段值为当前时间。
+
+> JPA中可以使用 `@LastModifiedDate` 注解自动实现此功能
 
 8 **[推荐]** **MyBatis** 不要写一个大而全的数据更新接口，传入为 POJO 类，不管是不是自己的目标更新字段，都进行 `update table set c1=value1，c2=value2，c3=value3`； 这是不对的。执行SQL时，不要更新无改动的字段，一是易出错；二是效率低；三是增加 binlog 存储。
 
@@ -37,9 +39,11 @@
 
 > 注意：在PG中，当表名或字段名包含大写字符时整个表名或字段需要使用英文双引号包裹
 
-2 **[强制]** 所有 @Query 和 @NamedQuery 语句统一到 orm.xml 配置文件中编写
+2 **[强制]** 所有 `@Query` 和 `@NamedQuery` 语句统一到 `orm.xml` 配置文件中编写
 
-3 **[推荐]** 所有Entity的 createdAt 和 updatedAt 字段都添加 @CreatedDate 或 @LastModifiedDate  注解，Spring-data-jpa 将自动设置这两个字段的值
+> 说明：当 `orm.xml` 文件太大时，应对其进行拆分。
+
+3 **[推荐]** 所有Entity的 `createdAt` 和 `updatedAt` 字段都添加 `@CreatedDate` 或 `@LastModifiedDate` 注解，Spring-data-jpa 将自动设置这两个字段的值
 
 4 **[强制]** Service层不允许直接操作数据库，所有数据库操作统一到 Repository
 
